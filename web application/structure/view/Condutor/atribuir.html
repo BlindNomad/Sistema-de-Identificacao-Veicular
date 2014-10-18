@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="text-info"> Atribuir cart&atilde;o ao condutor	 </h3> <hr>
+	</div>
+</div>
+<form method="post" class="form-horizontal">
+	<p class="alert alert-success" data-h-render="#{$obj->salvo}">Salvo com sucesso</p>
+	<p class="alert alert-danger" data-h-render="#{$obj->cpfS}">CPF Inexistente</p>
+	<p class="alert alert-danger" data-h-render="#{$obj->cartaoS}">Cartão Inexistente</p>
+	<div class="form-group">
+		
+		<div class="col-md-3">
+			<label for="cpf">CPF:</label>
+			<input type="text" name="cpf" id="cpf" class="form-control">
+		</div>
+		<div class="col-md-3">
+			<label for="ncart">C&oacute;digo do cart&atilde;o:</label>
+			<input type="text" name="ncart" id="ncart" class="form-control">
+		</div>
+		
+		<div class="col-md-3">
+			<label for="cadastro">&nbsp;</label>
+			<button type="submit" name="cadastro" id="cadastro" class="form-control btn btn-success"><i class="glyphicon glyphicon-floppy-save"></i>&nbsp;Cadastrar</button>
+		</div>
+		
+	</div>
+</form>
+
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="text-info"> Consultar de condutor	 </h3> <hr>
+	</div>
+</div>
+
+<form method="post" class="form-horizontal">
+	<p class="alert alert-success" data-h-render="#{$obj->salvo}">Salvo com sucesso</p>
+	<p class="alert alert-danger" data-h-render="#{$obj->cpfS}">CPF Inexistente</p>
+	
+	<div class="form-group">
+		<div class="col-md-3">
+			<label for="cpf">N&uacute;mero CPF:</label>
+			<input type="text" name="cpf" id="cpf" class="form-control">
+		</div>
+		<div class="col-md-3">
+			<label for="buscar">&nbsp;</label>
+			<button type="submit" name="buscar" id="buscar" class="form-control btn btn-success"><i class="glyphicon glyphicon-search"></i>&nbsp;Buscar</button>
+		</div>
+		</div><br/>
+	<hr>
+</form>
+
+<form method="post">
+	
+	<div class="table-responsive">
+		<table class="table table-striped table-hover" data-h-source="#{$obj->veiculos}">
+			<tr>
+				<th>ID</th>
+				<th>Placa</th>
+				<th>Cor</th>
+				<th>Renavam</th>
+				<th>Classe</th>
+				<th></th>
+			</tr>
+			<tr data-h-item="item">
+				<td>#{$item->getId()}</td>
+				<td>#{$item->getPlaca()}</td>
+				<td>#{$item->getCor()}</td>
+				<td>#{$item->getRenavam()}</td>
+				<td>#{$item->getClasse()->getClasse()}</td>
+				<td>
+					<button type="submit" name="editar" class="btn btn-info right" value="#{$item->getId()}"><i class="glyphicon glyphicon-edit"></i> Editar </button>
+				</td> 
+			</tr>
+		</table>
+	</div>
+	
+</form>

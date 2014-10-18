@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dbconf>
+	<dbms>mysql</dbms>
+	<host>localhost</host>
+	<username>root</username>
+	<password>thjs0212</password>
+	<database>controleAutomotivoBase</database>
+	<charset>utf8</charset>
+</dbconf>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Sistema de Controle de Acesso Automotivo</title>
+		<meta charset="UTF-8">
+
+		<meta name="viewport" content="width=device-width">
+		<script src="js/jquery-1.11.1.min.js" type="text/javascript"></script>
+		<link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
+		<link type="text/css" href="css/estilo.css" rel="stylesheet"/>
+	</head>
+	<body>
+
+		<div class="navbar navbar-default bg_topo">
+			<div class="container">
+				<h1 class="text-info">Sistema de controle de acesso automotivo</h1>
+
+			</div>
+		</div>
+
+		<div class="container bg_container">
+
+			<div class="row">
+				<div id="sidebar" class="col-xs-12 col-sm-3 hidden-xs" role="navigation">
+					<div id="my-affix" class="bs-sidebar">
+						<div class="panel-group" id="accordion">
+							<div class="panel panel-default" style="overflow: visible;">
+								<div class="panel-heading titulo-menu">
+									<h4 class="panel-title titulo-menu">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="glyphicon glyphicon-edit">
+											</span> Ve&iacute;culo</a>
+									</h4>
+								</div>
+								<div id="collapseOne" class="panel-collapse collapse #{$obj->menu == 1? 'in': ''}">
+									<div class="panel-body">
+										<ul class="nav nav-stacked">
+											<li><a href="veiculo/cadastro" data-h-render="#{$obj->permissao == 3}">Cadastro</a> </li>
+											<li><a href="veiculo/atribuir">Atribuir Condutor</a></li>
+											<li><a href="veiculo/consultar">Consultar dados</a></li>
+											<li><a href="#">Hist&oacute;rico de acesso</a></li>
+										</ul>
+
+									</div>
+								</div>
+
+
+							</div>
+							<div class="panel panel-default" style="overflow: visible;">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="glyphicon glyphicon-edit">
+											</span> Usu&aacute;rio</a>
+									</h4>
+								</div>
+								<div id="collapseTwo" class="panel-collapse collapse #{$obj->menu == 2? 'in': ''}">
+									<div class="panel-body">
+										<ul class="nav nav-stacked">
+											<li><a href="condutor/cadastro">Cadastro</a> </li>
+											<li><a href="condutor/atribuir">Atribuir Cart&atilde;o</a> </li>
+											<li><a href="condutor/atribuirVeiculo">Atribuir Ve&iacute;culo</a> </li>
+											<li><a href="condutor/atribuirclasse">Atribuir Classe</a></li>
+											<li><a href="condutor/consultar">Consultar dados</a></li>
+											<li><a href="#">Hist&oacute;rico de acesso</a></li>
+										</ul>
+
+									</div>
+								</div>
+							</div>
+							<div class="panel panel-default" style="overflow: visible;">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+										<a data-toggle="collapse" data-parent="#accordion" href="#collapseTree"><span class="glyphicon glyphicon-cog">
+											</span> Sistema</a>
+									</h4>
+								</div>
+								<div id="collapseTree" class="panel-collapse collapse">
+									<div class="panel-body">
+										<ul class="nav nav-stacked">
+											<li><a href="cartao/cadastro" data-h-render="#{$obj->permissao == 3}">Cadastro de Cart&atilde;o</a> </li>
+											<li><a href="inicial/sair">Sair</a> </li>
+										</ul>
+
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-9"  data-h-view="">
+
+
+
+				</div>
+			</div>
+
+
+
+
+		</div>
+
+		<script src="js/bootstrap.js" type="text/javascript"></script>
+	</body>
+</html>

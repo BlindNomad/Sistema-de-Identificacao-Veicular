@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+
+
+<div class="row">
+	<div class="col-md-12">
+		<h3 class="text-info"> Cadastro de condutor	 </h3> <hr>
+	</div>
+</div>
+
+<form method="post" class="form-horizontal">
+
+	<p class="alert alert-success" data-h-render="#{$obj->salvo}">Salvo com sucesso</p>
+	<input type="hidden" name="id" value="#{$obj->condutor->getId()}">
+	<div class="form-group">
+		<div class="col-md-3">
+			<label for="nome">Nome:</label>
+			<input type="text" name="nome" id="nome" class="form-control" value="#{$obj->condutor->getNome()}">
+		</div>
+		<div class="col-md-3">
+			<label for="cpf">CPF:</label>
+			<input type="text" name="cpf" id="cpf" class="form-control" placeholder="Somente números" value="#{$obj->condutor->getCpf()}">
+		</div>
+		<div class="col-md-3">
+			<label for="tel">Telefone:</label>
+			<input type="text" name="tel" id="tel" class="form-control" value="#{$obj->condutor->getTelefone()}">
+		</div>
+		<div class="col-md-3">
+			<label for="end">Endere&ccedil;o:</label>
+			<input type="text" name="end" id="end" class="form-control" value="#{$obj->condutor->getEndereco()}">
+		</div>
+		<div class="col-md-3">
+			<label for="cidade">Cidade:</label>
+			<input type="text" name="cidade" id="cidade" class="form-control" value="#{$obj->condutor->getCidade()}">
+		</div>
+		<div class="col-md-3">
+			<label for="uf">UF:</label>
+			<input type="text" name="uf" id="uf" class="form-control" placeholder="2 letras" value="#{$obj->condutor->getEstado()}">
+		</div>
+		<div class="col-md-3">
+			<label for="usuario">Usu&aacute;rio</label>
+			<input type="text" name="usuario" id="usuario" class="form-control" value="#{$obj->condutor->getUsuario()}">
+		</div>
+		<div class="col-md-3">
+			<label for="senha">Senha:</label>
+			<input type="password" name="senha" id="senha" class="form-control" >
+		</div>
+		<div class="col-md-3">
+			<label for="ncarteira">N. Carteira:</label>
+			<input type="text" name="ncarteira" id="ncarteira" class="form-control" value="#{$obj->condutor->getNumeroCarteira()}">
+		</div>
+		<div class="col-md-3">
+			<label for="validade">Validade:</label>
+			<input type="text" name="validade" id="validade" class="form-control" value="#{$obj->condutor->getValidade()}">
+		</div>
+		<div class="col-md-3">
+			<br/>
+			<input type="checkbox" name="liberado" id="liberado" class="form-control" data-h-checked="#{$obj->condutor->getLiberado()}">
+			
+			<label for="liberado"><span></span>&nbsp;Liberado</label>
+		</div>
+		
+		<div class="col-md-3">
+			<label for="cadastro">&nbsp;</label>
+			<button type="submit" name="cadastro" id="cadastro" class="form-control btn btn-success"><i class="glyphicon glyphicon-floppy-save"></i>&nbsp;Cadastrar</button>
+		</div>
+		
+	</div>
+	
+	
+</form>
+
