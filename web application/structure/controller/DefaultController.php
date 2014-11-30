@@ -7,6 +7,8 @@
 			$pessoa = new Pessoa();
 			$buscaPessoas = $pessoa->search();
 			$pessoas = $buscaPessoas->execute();
+			
+			
 			if ($buscaPessoas->getTotalRows() == 0) {
 				Session::set("nivel", 3);
 				Session::set("aut", true);

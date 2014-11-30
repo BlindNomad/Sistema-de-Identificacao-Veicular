@@ -25,7 +25,7 @@
 		 * @manyToOne(lazy) 
 		 * @itemClass(Pessoa)
 		 */
-		protected $PessoaCima;
+		protected $pessoaCima;
 
 		/**
 		 * Nome da pessoa
@@ -101,6 +101,17 @@
 
 		function __construct($id = null) {
 			$this->id = $id;
+			$this->pessoaCima = null;
+			$this->cidade = null;
+			$this->cpf = null;
+			$this->endereco = null;
+			$this->estado = null;
+			$this->historicos = null;
+			$this->nome = null;
+			$this->permissao = null;
+			$this->senha = null;
+			$this->telefone = null;
+			$this->usuario = null;
 		}
 
 		public function getId() {
@@ -196,11 +207,11 @@
 		}
 		
 		public function getPessoaCima() {
-			return $this->PessoaCima;
+			return $this->pessoaCima;
 		}
 
-		public function setPessoaCima(Pessoa $PessoaCima) {
-			$this->PessoaCima = $PessoaCima;
+		public function setPessoaCima(Pessoa $pessoaCima) {
+			$this->pessoaCima = $pessoaCima;
 		}
 
 	
