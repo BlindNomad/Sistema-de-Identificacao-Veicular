@@ -26,10 +26,14 @@ public class DadosNuvem {
 
 	public DadosNuvem(JSONObject dados) {
 		this.dados = dados;
-		Conexao conexaoSql = new Conexao("192.168.3.163", "root", "thjs0212", "car_core");
+		Conexao conexaoSql = new Conexao();
 		this.conexao = conexaoSql.conectar();
 	}
 
+	/**
+	 * Coloca os dados no banco de dados de acordo com o código que chega por JSOn
+	 * @return 
+	 */
 	public boolean execute() {
 
 		int codigo = this.dados.getInt("codigo");
@@ -51,6 +55,11 @@ public class DadosNuvem {
 
 	}
 
+	/**
+	 * Atualiza os dados de um vetor de condutores
+	 * @param dados
+	 * @return 
+	 */
 	private boolean condutoresAtualizar(JSONObject dados) {
 
 		Historico historico = new Historico(this.conexao);
@@ -78,6 +87,11 @@ public class DadosNuvem {
 
 	}
 
+	/**
+	 * Atualiza os dados de 1 condutor
+	 * @param dados
+	 * @return 
+	 */
 	private boolean condutorAtualizar(JSONObject dados) {
 
 		JSONObject c = dados.getJSONObject("mensagem");

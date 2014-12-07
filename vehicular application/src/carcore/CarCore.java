@@ -5,14 +5,17 @@
  */
 package carcore;
 
-import comunicacao.BlueComunication;
-import nucleo.Aguardando;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import nucleo.Display;
 import model.Condutor;
 import model.Veiculo;
+import nucleo.Gpio;
+import nucleo.LeitorDeTag;
 
 import org.json.JSONObject;
+import org.json.zip.Huff;
 import sql.Conexao;
 
 /**
@@ -27,32 +30,104 @@ public class CarCore {
 	public static void main(String[] args) {
 		// TODO code application logic here
 
-		Aguardando w = new Aguardando(true, 3, 500);
-		w.start();
+		System.out.println("Testando I/O");
 
-		BlueComunication bt = new BlueComunication();
-		bt.start();
+		Display d = new Display();
+		d.setTipo(Display.type.TESTE);
+		d.start();
 
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(CarCore.class.getName()).log(Level.SEVERE, null, ex);
+		}
 
-//		JSONObject dados = new JSONObject();
-//		Veiculo veiculo = new Veiculo();
-//
-//
-//		
-//		Conexao conexaoSql = new Conexao("192.168.3.163", "root", "thjs0212", "car_core");
-//
-//		Condutor condutor = new Condutor(conexaoSql.conectar());
-//		condutor.setCartao("123456789");
-//		if (!condutor.condutorPorCartao()) {
-//			
-//			veiculo.buscaCondutoresNuvem();
-//			
-//		}else if (!condutor.validadeDaInformacao()) {
-//			
-//			veiculo.buscarCondutorNuvem(condutor.getCartao());
-//			
-//		}
+		System.out.println("Iniciando");
+		d.setTipo(Display.type.INICIANDO);
+
+		JSONObject dados = new JSONObject();
+		Veiculo veiculo = new Veiculo();
+
 		
+
+		Conexao conexaoSql = new Conexao();
+
+		while (true) {
+			Condutor condutor = new Condutor(conexaoSql.conectar());
+			LeitorDeTag serial = new LeitorDeTag();
+			serial.setArquivo("./tag.tag");
+			serial.setSerial("");
+			serial.start();
+			d.setTipo(Display.type.AGUARDANDO);
+			System.out.println("Aguardando");
+			while (serial.getSerial() == "") {
+			System.out.println("Valor Serial: " + serial.getSerial());
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ex) {
+					Logger.getLogger(CarCore.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+
+			condutor.setCartao(serial.getSerial());
+			
+
+			System.out.println("Procurando condutor");
+			if (!condutor.condutorPorCartao()) {
+
+				veiculo.buscaCondutoresNuvem();
+
+			} else if (!condutor.validadeDaInformacao()) {
+
+				veiculo.buscarCondutorNuvem(condutor.getCartao());
+
+			}
+
+			if (condutor.getLiberado() == 1) {
+				System.out.println("Condutor Habilitado");
+				d.setTipo(Display.type.HABILITADO);
+
+			} else {
+				System.out.println("Condutor Desabilitado");
+				d.setTipo(Display.type.DESABILITADO);
+				try {
+					Thread.sleep(5000);
+				} catch (InterruptedException ex) {
+					Logger.getLogger(CarCore.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+
+			serial.setHabilitado(false);
+			LeitorDeTag desligar = new LeitorDeTag();
+			desligar.setArquivo("./tag.tag");
+			desligar.setSerial("ligado");
+			desligar.start();
+			System.out.println("Veiculo Habilitado = " + desligar.getSerial());
+			String resposataEntrada = "0";
+			while (!desligar.getSerial().equals("d1234") && condutor.getLiberado() == 1 && resposataEntrada.equals("0")) {
+				System.out.println(desligar.getSerial() + " = " + condutor.getLiberado());
+				Gpio entrada = new Gpio(8, Gpio.type.in);
+				
+				resposataEntrada = entrada.enable();
+				System.out.println("Entrada = " + resposataEntrada);
+				
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ex) {
+					Logger.getLogger(CarCore.class.getName()).log(Level.SEVERE, null, ex);
+				}
+			}
+			d.setTipo(Display.type.REINICIAR);
+			
+			System.out.println("Veiculo desligado");
+			desligar.setHabilitado(false);
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException ex) {
+				Logger.getLogger(CarCore.class.getName()).log(Level.SEVERE, null, ex);
+			}
+
+		}
 
 	}
 

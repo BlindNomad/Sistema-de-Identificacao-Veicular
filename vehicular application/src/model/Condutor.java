@@ -5,24 +5,26 @@
  */
 package model;
 
-import com.mysql.fabric.xmlrpc.base.Data;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import nucleo.LeitorDeTag;
+
 
 /**
  *
  * @author thiagoj
  */
-public class Condutor {
+public class Condutor{
 
 	private int id;
 
@@ -43,9 +45,13 @@ public class Condutor {
 	private int tempoVida;
 
 	private Connection conexao;
+	
+	
 
 	public Condutor(Connection conexao) {
 		this.conexao = conexao;
+		this.cartao = "";
+		
 	}
 
 	public int getId() {
@@ -314,4 +320,5 @@ public class Condutor {
 		
 	}
 
+	
 }

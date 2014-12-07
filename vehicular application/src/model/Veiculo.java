@@ -23,7 +23,7 @@ public class Veiculo {
 	public Veiculo() {
 		
 		this.placa = "LWX-7546";
-		this.classe = "A";
+		this.classe = "B";
 		
 	}
 
@@ -47,12 +47,12 @@ public class Veiculo {
 		JSONObject dados = new JSONObject();
 		EnviaDados enviar = new EnviaDados();
 		
-		enviar.setUrl("http://192.168.3.163/json");
+		enviar.setUrl("http://172.18.19.203/json");
 		dados.put("placa", this.placa);
 		dados.put("classe", this.classe);
 		dados.put("codigo", 1);
 		
-		enviar.setParametros("dados = " + dados);
+		enviar.setParametros("dados=" + dados);
 		JSONObject resposta = new JSONObject(enviar.execute());
 		
 		DadosNuvem nuvem = new DadosNuvem(resposta);
@@ -64,13 +64,13 @@ public class Veiculo {
 		JSONObject dados = new JSONObject();
 		EnviaDados enviar = new EnviaDados();
 		
-		enviar.setUrl("http://192.168.3.163/json");
+		enviar.setUrl("http://172.18.19.203/json");
 		dados.put("placa", this.placa);
 		dados.put("classe", this.classe);
 		dados.put("cartao", tag);
 		dados.put("codigo", 2);
 		
-		enviar.setParametros("dados = " + dados);
+		enviar.setParametros("dados=" + dados);
 		JSONObject resposta = new JSONObject(enviar.execute());
 		
 		DadosNuvem nuvem = new DadosNuvem(resposta);
