@@ -7,8 +7,16 @@
 package model;
 
 import comunicacao.EnviaDados;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import nucleo.DadosNuvem;
 import org.json.JSONObject;
+import sql.Conexao;
 
 /**
  *
@@ -21,6 +29,22 @@ public class Veiculo {
 	private String classe;
 
 	public Veiculo() {
+		
+		FileInputStream stream;
+		try {
+			stream = new FileInputStream("/home/pi/placa.txt");
+			InputStreamReader reader = new InputStreamReader(stream);
+			BufferedReader br = new BufferedReader(reader);
+			this.placa = br.readLine();
+			stream = new FileInputStream("/home/pi/classe.txt");
+			reader = new InputStreamReader(stream);
+			br = new BufferedReader(reader);
+			this.classe = br.readLine();
+		} catch (FileNotFoundException ex) {
+			Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		
 		this.placa = "LWX-7546";
 		this.classe = "B";
@@ -47,7 +71,19 @@ public class Veiculo {
 		JSONObject dados = new JSONObject();
 		EnviaDados enviar = new EnviaDados();
 		
-		enviar.setUrl("http://172.18.19.203/json");
+		try {
+			FileInputStream stream = new FileInputStream("/home/pi/url.txt");
+			InputStreamReader reader = new InputStreamReader(stream);
+			BufferedReader br = new BufferedReader(reader);
+			String url = br.readLine();
+			enviar.setUrl(url + "/json");
+		} catch (FileNotFoundException ex) {
+			Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		
 		dados.put("placa", this.placa);
 		dados.put("classe", this.classe);
 		dados.put("codigo", 1);
