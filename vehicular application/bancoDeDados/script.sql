@@ -16,7 +16,27 @@ CREATE TABLE IF NOT EXISTS `car_core`.`condutor` (
   `pontos` INT NOT NULL,
   `liberado` TINYINT NOT NULL,
   `cartao` VARCHAR(45) NOT NULL,
+  `data_inf` DATETIME NULL,
+  `tempo_vida` INT NULL,
   PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `car_core`.`historico`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `car_core`.`historico` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `id_condutor` INT NOT NULL,
+  `data_hora` DATETIME NOT NULL,
+  `tipo_acesso` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_historico_condutor_idx` (`id_condutor` ASC),
+  CONSTRAINT `fk_historico_condutor`
+    FOREIGN KEY (`id_condutor`)
+    REFERENCES `car_core`.`condutor` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
