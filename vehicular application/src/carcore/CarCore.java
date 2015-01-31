@@ -45,14 +45,15 @@ public class CarCore {
 		System.out.println("Iniciando");
 		d.setTipo(Display.type.INICIANDO);
 
-		JSONObject dados = new JSONObject();
-		Veiculo veiculo = new Veiculo();
+		//JSONObject dados = new JSONObject();
+		
 
 		
 
 		Conexao conexaoSql = new Conexao();
 
 		while (true) {
+			Veiculo veiculo = new Veiculo();
 			Condutor condutor = new Condutor(conexaoSql.conectar());
 			LeitorDeTag serial = new LeitorDeTag();
 			serial.setArquivo("./tag.tag");
@@ -121,6 +122,9 @@ public class CarCore {
 			
 			System.out.println("Veiculo desligado");
 			desligar.setHabilitado(false);
+			condutor = null;
+			serial = null;
+			veiculo = null;
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException ex) {
