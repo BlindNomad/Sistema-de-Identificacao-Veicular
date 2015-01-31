@@ -105,7 +105,7 @@ public class CarCore {
 			desligar.start();
 			System.out.println("Veiculo Habilitado = " + desligar.getSerial());
 			String resposataEntrada = "0";
-			while (!desligar.getSerial().equals("d1234") && condutor.getLiberado() == 1 && resposataEntrada.equals("0")) {
+			while (!desligar.getSerial().equals("d1234") && condutor.getLiberado() == 1 && resposataEntrada.equals("1")) {
 				System.out.println(desligar.getSerial() + " = " + condutor.getLiberado());
 				Gpio entrada = new Gpio(8, Gpio.type.in);
 				
